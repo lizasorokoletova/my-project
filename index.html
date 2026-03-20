@@ -1,74 +1,173 @@
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Главная</title>
+    <title>My profile</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="index.html" class="active" aria-current="page">Главная</a></li>
-            <li><a href="blog.html">Блог</a></li>
-        </ul>
-    </nav>
-    <main>
-        <h1>Обо мне</h1>
-        <p> Привет! Меня зовут Лиза и я начинающий веб-разработчик.  Этот блог — мой личный дневник обучения: здесь я делюсь тем, что узнаю сама, разбираю сложные темы простым языком и показываю свои первые проекты.</p>
-    
-        <img src="cat.jpg" alt="Котик" width="285">
 
-        <h2>Моя карьера</h2>
-        <h3>Текущая должность</h3>
-        <p>Студентка 1 курса магистратуры в НГТУ по направлению "Прикладная информатика".<br>Параллельно прохожу курс по Основам веб-разработки с Angular в EltexSchool.</p>
+<header class="header">
+    <div class="container nav">
+        <div class="logo"> 
+            <img src="logo.jpg" alt="Логотип" width="30" height="30">
+        </div>
+        <nav>
+            <ul class="menu">
+                <li><a href="index.html" class="active">About me</a></li>  
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
 
-        <h3>Опыт работы:</h3>
-        <p><b>Стажер-аналитик, ООО "1С-Рарус"  (Февраль — Апрель 2024)</b><br>Анализ и освоение основных принципов работы и администрирования платформы 1С:Предприятие.</p>
-        <p><b>Оператор КЦ, ООО "EasyStom" (Февраль — Апрель 2025)</b><br>Консультирование и запись пациентов по телефону, ведение клиентских данных в CRM-системе Битрикс24.</p>
-    
-        <h3>Образование:</h3>
-        <p><b>Новосибирский Государственный Технический Университет, 2021 — 2025</b><br>Бакалавриат по специальности: "Информационные системы и технологии"<br> Выпускная работа: "Определение на фотографическом изображении формы следа оставленного движущимся в атмосфере телом"</p>
-        <p><b>Новосибирский Государственный Технический Университет, 2025 — 2027</b><br>Магистратура по специальности: "Прикладная информатика"</p>
+<section class="hero container">
+    <div class="hero-text">
+        <h1>Hello! I’m Nelsom, a photographer</h1>
+        <p>
+            Occaecat elit pariatur non Lorem laborum proident Lorem non sint <br>
+            nostrud. Et dolore incididunt mollit nostrud Lorem dolore. Qui aliquip <br>
+            aute amet eu adipisicing velit ullamco nulla sint enim do quis aute<br>
+        </p>
+        <a href="#" class="link">More about me →</a>
+    </div>
+    <div class="hero-img">
+        <img src="photo.jpg" alt="Горы">
+    </div>
+</section>
 
-        <h3>Курсы и сертификаты:</h3>
-        <ul> 
-            <li>Супер стажер Аналитик — ИнфоСофт (2025)</li>
-            <li>Курс онлайн-семинаров — 1С-Рарус (2024)</li>
-            <li>SQL для всех. Level Up — Stepik (2024)</li>
-            <li>Серия вебинаров по фронтенд-разработке — Skillbox (2023)</li>
-        </ul>
-    
-        <h3>Навыки:</h3>
-        <ul> 
-            <li>Программирование: JavaScript, HTML, CSS, SQL</li>
-            <li>Инструменты: Git, VS Code, Figma, Miro, Draw.io</li>
-            <li>Методологии и нотации: Agile, Scrum, BPMN, UML, IDEF0/IDEF3</li>
-        </ul>
-   
-        <h3>Достижения:</h3>
-        <ul> 
-            <li>Владею нотациями BPMN и UML: самостоятельно строю диаграммы процессов в Draw.io и Miro для учебных проектов.</li>
-            <li>Прошла интенсив «Супер стажер Аналитик» от ИнфоСофт с практическими кейсами по оптимизации бизнес-процессов.</li>
-            <li>Изучила архитектуру платформы 1С:Предприятие и выполнила тестовые задания по настройке справочников и документов.</li>
-            <li>Применила методологии IDEF0 и IDEF3 для описания бизнес-процессов в рамках стажёрских задач.</li>
-        </ul>
+<section class="posts container">
+    <div class="post">  
+        <div class="post-text">
+            <span class="category product">Product photography</span>
+            <h3>Paris secrets</h3>
+            <p>
+                Sint occaecat deserunt aliquip do occaecat ut quis.<br>
+                Cupidatat magna fugiat quis sit duis est in volup
+            </p>
+        </div>
+        <img src="Selection.jpg" alt="Иконка">
+    </div>
 
-        <h2>Последние статьи</h2>
-        <h3>Как создать адаптивный дизайн за 30 минут</h3>
-        <p>Опубликовано: 15 декабря 2024 <br> В этой статье я расскажу о ключевых принципах создания мобильных интерфейсов, которые одинаково хорошо выглядят на всех устройствах. Вы узнаете о медиа-запросах, гибких сетках и практических примерах кода, которые можно использовать прямо сейчас.</p>
-        <h3>Как создать адаптивный дизайн за 30 минут</h3>
-        <p>Опубликовано: 15 декабря 2024 <br> В этой статье я расскажу о ключевых принципах создания мобильных интерфейсов, которые одинаково хорошо выглядят на всех устройствах. Вы узнаете о медиа-запросах, гибких сетках и практических примерах кода, которые можно использовать прямо сейчас.</p>
-        <h3>Как создать адаптивный дизайн за 30 минут</h3>
-        <p>Опубликовано: 15 декабря 2024 <br> В этой статье я расскажу о ключевых принципах создания мобильных интерфейсов, которые одинаково хорошо выглядят на всех устройствах. Вы узнаете о медиа-запросах, гибких сетках и практических примерах кода, которые можно использовать прямо сейчас.</p>
+    <div class="post green">
+        <div class="post-text">
+            <span class="category portrait">Portrait</span>
+            <h3>Oceanic feeling</h3>
+            <p>
+                Sint occaecat deserunt aliquip do occaecat ut quis.<br>
+                Cupidatat magna fugiat quis sit duis est in volup
+            </p>
+        </div>
+        <img src="Selection.jpg" alt="Иконка">
+    </div>
 
-        <a href="blog.html">Посмотреть все статьи</a>
-    </main>
-    <footer>
-        <h2>Контакты</h2>
-        <p>Email: <a href="mailto:liza.sorokoletova@bk.ru">liza.sorokoletova@bk.ru</a><br>Телефон: +7 (999) 123-45-67</p>
-        <h2>Социальные сети</h2>
-        <p>Instagram | Twitter | LinkedIn | GitHub</p>
-    </footer>
+    <button class="btn">Browse all posts</button>
+</section>
+
+<section class="skills container">
+    <h2>My skills</h2>
+    <div class="skills-grid">
+        <div class="skill">Photography</div>
+        <div class="skill">Graphic Design</div>
+        <div class="skill">Creativity</div>
+        <div class="skill">Brand Identity</div>
+        <div class="skill">Copy Writing</div>
+        <div class="skill">Team Working</div>
+    </div>
+</section>
+
+<section class="work container">
+    <div class="work-left">
+        <h2>My work</h2>
+        <p>
+            Duis nisi do exercitation in irure aliqua commodo nisi eu id<br>reprehenderit dolore fugiat consectetur irure
+        </p>
+    </div>
+    <div class="work-right">
+        <div class="work-item">
+            <img src="work1.jpg" alt="Иконка работы">
+            <div class="work-info">
+                <span>Consectetur · (2016 - 2017)</span>
+                <h4>Graphic design</h4>
+                <p>Nostrud tempor cillum sunt excepteur do ut proident deserunt</p>
+            </div>
+        </div>
+        <div class="work-item">
+            <img src="work2.jpg" alt="Иконка работы">
+            <div class="work-info">
+                <span>Bibendum · (2017 - 2020)</span>
+                <h4>Photographer</h4>
+                <p>Ad do dolore cillum dolor et ex non dolor qui.</p>
+            </div>
+        </div>
+        <div class="work-item">
+            <img src="work3.jpg" alt="Иконка работы">
+            <div class="work-info">
+                <span>Adipiscing · (2020 - 2022)</span>
+                <h4>Photographer's Assistant</h4>
+                <p>Ad do dolore cillum dolor et ex non dolor qui.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="hobby container">
+    <div class="hobby-left">
+        <h2>Hobby projects</h2>
+        <div class="hobby-images">
+            <div class="hobby-main">
+                <img src="Hobby1.jpg" alt="Хобби">
+                <div class="overlay">
+                    <div>
+                        <h4>Hobby project name</h4>
+                        <p>
+                            Duis nisi do exercitation in irure aliqua commodo nisi eu id
+                            reprehenderit dolore fugiat consectetur irure labore est ea.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <img src="Hobby2.jpg" alt="Хобби">
+        </div>
+    </div>
+    <div class="hobby-right">
+        <p>
+            Duis nisi do exercitation in irure aliqua commodo nisi eu id<br>
+            reprehenderit dolore fugiat consectetur irure labore est ea.
+        </p>
+        <div class="hobby-cards">
+            <div class="hobby-card">
+                <img src="Selection.jpg" alt="Иконка">
+            </div>
+            <div class="hobby-card">
+                <img src="Selection.jpg" alt="Иконка">
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer id="contact" class="footer">
+    <div class="container footer-grid">
+        <div class="footer-left">
+            <h2>Say hello and let's <br> work together !</h2>
+            <p class="email">
+                <a href="mailto:liza@creativeblog.ru">liza@creativeblog.ru</a>
+            </p>
+            <p>Телефон: +7 (999) 123-45-67</p>
+            <img src="contacts.jpg" alt="Контакты">
+            <p>© 2026 Brand, Inc</p>
+        </div>
+        <form class="form">
+            <label>Email</label>
+            <input type="email" placeholder="Your email address">
+            <label>Input your message</label>
+            <textarea placeholder="Describe your project"></textarea>
+            <button class="btn">Submit</button>
+        </form>
+    </div>
+</footer>
+
 </body>
 </html>

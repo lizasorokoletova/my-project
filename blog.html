@@ -3,46 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Блог</title>
+    <title>Blog</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="index.html">Главная</a></li>
-            <li><a href="blog.html" class="active" aria-current="page">Блог</a></li>
-        </ul>
-    </nav>
-    <main>
-        <h1>Статьи</h1>
 
-        <h3>Как создать адаптивный дизайн за 30 минут</h3>
-        <p>Опубликовано: 15 декабря 2024 <br> В этой статье я расскажу о ключевых принципах создания мобильных интерфейсов, которые одинаково хорошо выглядят на всех устройствах. Вы узнаете о медиа-запросах, гибких сетках и практических примерах кода, которые можно использовать прямо сейчас.</p>
-        <h3>Как создать адаптивный дизайн за 30 минут</h3>
-        <p>Опубликовано: 15 декабря 2024 <br> В этой статье я расскажу о ключевых принципах создания мобильных интерфейсов, которые одинаково хорошо выглядят на всех устройствах. Вы узнаете о медиа-запросах, гибких сетках и практических примерах кода, которые можно использовать прямо сейчас.</p>
-        <h3>Как создать адаптивный дизайн за 30 минут</h3>
-        <p>Опубликовано: 15 декабря 2024 <br> В этой статье я расскажу о ключевых принципах создания мобильных интерфейсов, которые одинаково хорошо выглядят на всех устройствах. Вы узнаете о медиа-запросах, гибких сетках и практических примерах кода, которые можно использовать прямо сейчас.</p>
-        <h3>Как создать адаптивный дизайн за 30 минут</h3>
-        <p>Опубликовано: 15 декабря 2024 <br> В этой статье я расскажу о ключевых принципах создания мобильных интерфейсов, которые одинаково хорошо выглядят на всех устройствах. Вы узнаете о медиа-запросах, гибких сетках и практических примерах кода, которые можно использовать прямо сейчас.</p>
-        <h3>Как создать адаптивный дизайн за 30 минут</h3>
-        <p>Опубликовано: 15 декабря 2024 <br> В этой статье я расскажу о ключевых принципах создания мобильных интерфейсов, которые одинаково хорошо выглядят на всех устройствах. Вы узнаете о медиа-запросах, гибких сетках и практических примерах кода, которые можно использовать прямо сейчас.</p>
-        <h3>Как создать адаптивный дизайн за 30 минут</h3>
-        <p>Опубликовано: 15 декабря 2024 <br> В этой статье я расскажу о ключевых принципах создания мобильных интерфейсов, которые одинаково хорошо выглядят на всех устройствах. Вы узнаете о медиа-запросах, гибких сетках и практических примерах кода, которые можно использовать прямо сейчас.</p>
-        <h3>Как создать адаптивный дизайн за 30 минут</h3>
-        <p>Опубликовано: 15 декабря 2024 <br> В этой статье я расскажу о ключевых принципах создания мобильных интерфейсов, которые одинаково хорошо выглядят на всех устройствах. Вы узнаете о медиа-запросах, гибких сетках и практических примерах кода, которые можно использовать прямо сейчас.</p>
+<header class="header">
+    <div class="container nav">
+        <div class="logo"> 
+            <img src="logo.jpg" alt="Логотип" width="30" height="30">
+        </div>
+        <nav>
+            <ul class="menu">
+                <li><a href="index.html">About me</a></li>
+                <li><a href="#" class="active">Blog</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
 
-        <h2>Создать статью</h2>
+<section class="container blog">
+    <div class="blog-header">
+        <div class="blog-header-left">
+            <h1>My blogs</h1>
+            <p class="blog-subtitle">
+                Lorem occaecat proident excepteur commodo et nulla eiusmod. Elit esse aute <br> officia dolor elit aute
+            </p>
+        </div>
+        <div class="blog-header-right">
+            <img src="myBlog.jpg" alt="Логотип"> 
+        </div>
+    </div>
 
-        <form>
-            <input type="text" name="title" placeholder="Введите заголовок"><br><br>
-            <textarea name="article" rows="6" cols="50" placeholder="Текст статьи"></textarea><br><br>
-            <button type="submit">Добавить</button>
+    <div class="blog-featured">
+        <img src="Selection.jpg" alt="Иконка">
+        <div class="featured-text">
+            <h3>Minim anim pariatur magna duis sit et dolor inci</h3>
+            <p>
+                Sint occaecat deserunt aliquip do occaecat ut quis.
+                Cupidatat magna fugiat quis sit duis est in volup
+            </p>
+            <span>Oct 16, 2025</span>
+        </div>
+    </div>
+
+    <div class="blog-grid">
+        <div class="card">
+            <img src="Selection.jpg" alt="Иконка">
+            <h3>Minim anim pariatur magna duis sit et dolor incididunt</h3>
+            <span>Oct 16, 2025</span>
+        </div>
+        <div class="card">
+            <img src="Selection.jpg" alt="Иконка">
+            <h3>Minim anim pariatur magna duis sit et dolor incididunt</h3>
+            <span>Oct 16, 2025</span>
+        </div>
+        <div class="card">
+            <img src="Selection.jpg" alt="Иконка">
+            <h3>Minim anim pariatur magna duis sit et dolor incididunt</h3>
+            <span>Oct 16, 2025</span>
+        </div>
+        <div class="card">
+            <img src="Selection.jpg" alt="Иконка">
+            <h3>Minim anim pariatur magna duis sit et dolor incididunt</h3>
+            <span>Oct 16, 2025</span>
+        </div>
+        <div class="card">
+            <img src="Selection.jpg" alt="Иконка">
+            <h3>Minim anim pariatur magna duis sit et dolor incididunt</h3>
+            <span>Oct 16, 2025</span>
+        </div>
+        <div class="card">
+            <img src="Selection.jpg" alt="Иконка">
+            <h3>Minim anim pariatur magna duis sit et dolor incididunt</h3>
+            <span>Oct 16, 2025</span>
+        </div>
+    </div>
+    <button class="btn-outline">Next →</button>
+</section>
+
+<footer id="contact" class="footer">
+    <div class="container footer-grid">
+        <div class="footer-left">
+            <h2>Say hello and let's <br> work together !</h2>
+            <p class="email">
+                <a href="mailto:liza@creativeblog.ru">liza@creativeblog.ru</a>
+            </p>
+            <p>Телефон: +7 (999) 123-45-67</p>
+            <img src="contacts.jpg" alt="Контакты">
+            <p>© 2026 Brand, Inc</p>
+        </div>
+        <form class="form">
+            <label>Email</label>
+            <input type="email" placeholder="Your email address">
+            <label>Input your message</label>
+            <textarea placeholder="Describe your project"></textarea>
+            <button class="btn">Submit</button>
         </form>
-    </main>
-    <footer>
-        <h2>Контакты</h2>
-        <p>Email: <a href="mailto:liza.sorokoletova@bk.ru">liza.sorokoletova@bk.ru</a><br>Телефон: +7 (999) 123-45-67</p>
-        <h2>Социальные сети</h2>
-        <p>Instagram | Twitter | LinkedIn | GitHub</p>
-    </footer>
+    </div>
+</footer>
+
 </body>
 </html>
