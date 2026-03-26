@@ -24,65 +24,105 @@
     </div>
 </header>
 
-<section class="container blog">
-    <div class="blog-header">
-        <div class="blog-header-left">
-            <h1>My blogs</h1>
-            <p class="blog-subtitle">
-                Lorem occaecat proident excepteur commodo et nulla eiusmod. Elit esse aute <br> officia dolor elit aute
-            </p>
-        </div>
-        <div class="blog-header-right">
-            <img src="myBlog.jpg" alt="Логотип"> 
+<div class="blog-layout">
+    <div class="blog-content">
+        <div class="container blog">
+            <div class="blog-header">
+                <div class="blog-header-left">
+                    <h1>My blogs</h1>
+                    <p class="blog-subtitle">
+                        Lorem occaecat proident excepteur commodo et nulla eiusmod. Elit esse aute <br> officia dolor elit aute
+                    </p>
+                </div>
+                <div class="blog-header-right">
+                    <img src="myBlog.jpg" alt="Логотип"> 
+                </div>
+            </div>
+
+            <div class="blog-featured">
+                <img src="Selection.jpg" alt="Иконка">
+                <div class="featured-text">
+                    <h3>Minim anim pariatur magna duis sit et dolor inci</h3>
+                    <p>
+                        Sint occaecat deserunt aliquip do occaecat ut quis.
+                        Cupidatat magna fugiat quis sit duis est in volup
+                    </p>
+                    <span>Oct 16, 2025</span>
+                </div>
+            </div>
+
+            <div class="blog-grid">
+                <div class="card">
+                    <img src="Selection.jpg" alt="Иконка">
+                    <h3>Minim anim pariatur magna duis sit et dolor incididunt</h3>
+                    <span>Oct 16, 2025</span>
+                </div>
+                <div class="card">
+                    <img src="Selection.jpg" alt="Иконка">
+                    <h3>Minim anim pariatur magna duis sit et dolor incididunt</h3>
+                    <span>Oct 16, 2025</span>
+                </div>
+                <div class="card">
+                    <img src="Selection.jpg" alt="Иконка">
+                    <h3>Minim anim pariatur magna duis sit et dolor incididunt</h3>
+                    <span>Oct 16, 2025</span>
+                </div>
+                <div class="card">
+                    <img src="Selection.jpg" alt="Иконка">
+                    <h3>Minim anim pariatur magna duis sit et dolor incididunt</h3>
+                    <span>Oct 16, 2025</span>
+                </div>
+                <div class="card">
+                    <img src="Selection.jpg" alt="Иконка">
+                    <h3>Minim anim pariatur magna duis sit et dolor incididunt</h3>
+                    <span>Oct 16, 2025</span>
+                </div>
+                <div class="card">
+                    <img src="Selection.jpg" alt="Иконка">
+                    <h3>Minim anim pariatur magna duis sit et dolor incididunt</h3>
+                    <span>Oct 16, 2025</span>
+                </div>
+            </div>
+            <button class="btn-outline">Next →</button>
+
+            <div id="postForm" class="post-form hidden">
+                <h3>Добавить статью</h3>
+                <label for="postTitle">Заголовок статьи</label>
+                <input type="text" id="postTitle" placeholder="Введите заголовок" required>
+                <label for="postText">Текст статьи</label>
+                <textarea id="postText" rows="6" placeholder="Введите текст статьи" required></textarea>
+                <div class="form-buttons">
+                    <button id="savePostBtn" class="btn-primary">Сохранить</button>
+                    <button id="cancelPostBtn" class="btn-secondary">Отмена</button>
+                </div>
+            </div>
         </div>
     </div>
 
-    <div class="blog-featured">
-        <img src="Selection.jpg" alt="Иконка">
-        <div class="featured-text">
-            <h3>Minim anim pariatur magna duis sit et dolor inci</h3>
-            <p>
-                Sint occaecat deserunt aliquip do occaecat ut quis.
-                Cupidatat magna fugiat quis sit duis est in volup
-            </p>
-            <span>Oct 16, 2025</span>
-        </div>
-    </div>
+    <aside class="admin-panel">
+        <img src="img1.jpg" alt="Создать статью" id="createPostBtn" class="admin-icon" title="Создать статью">
+        <img src="img2.jpg" alt="Показать статистику" id="showStatsBtn" class="admin-icon" title="Показать статистику">
+    </aside>
+</div>
 
-    <div class="blog-grid">
-        <div class="card">
-            <img src="Selection.jpg" alt="Иконка">
-            <h3>Minim anim pariatur magna duis sit et dolor incididunt</h3>
-            <span>Oct 16, 2025</span>
+<dialog id="statsDialog" class="stats-dialog">
+    <div class="dialog-content">
+        <div class="dialog-header">
+            <h2>Статистика страницы</h2>
+            <button id="closeDialogBtn" class="close-dialog">&times;</button>
         </div>
-        <div class="card">
-            <img src="Selection.jpg" alt="Иконка">
-            <h3>Minim anim pariatur magna duis sit et dolor incididunt</h3>
-            <span>Oct 16, 2025</span>
-        </div>
-        <div class="card">
-            <img src="Selection.jpg" alt="Иконка">
-            <h3>Minim anim pariatur magna duis sit et dolor incididunt</h3>
-            <span>Oct 16, 2025</span>
-        </div>
-        <div class="card">
-            <img src="Selection.jpg" alt="Иконка">
-            <h3>Minim anim pariatur magna duis sit et dolor incididunt</h3>
-            <span>Oct 16, 2025</span>
-        </div>
-        <div class="card">
-            <img src="Selection.jpg" alt="Иконка">
-            <h3>Minim anim pariatur magna duis sit et dolor incididunt</h3>
-            <span>Oct 16, 2025</span>
-        </div>
-        <div class="card">
-            <img src="Selection.jpg" alt="Иконка">
-            <h3>Minim anim pariatur magna duis sit et dolor incididunt</h3>
-            <span>Oct 16, 2025</span>
+        <div class="stats-body">
+            <div class="stat-item">
+                <span>Всего статей:</span>
+                <span id="totalPostsCount">0</span>
+            </div>
+            <div class="stat-item">
+                <span>Комментарии:</span>
+                <span id="totalCommentsCount">0</span>
+            </div>
         </div>
     </div>
-    <button class="btn-outline">Next →</button>
-</section>
+</dialog>
 
 <footer id="contact" class="footer">
     <div class="container footer-grid">
@@ -105,5 +145,6 @@
     </div>
 </footer>
 
+<script src="script.js"></script>
 </body>
 </html>
