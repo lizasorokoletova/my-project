@@ -1,52 +1,30 @@
-const createPostBtn = document.getElementById('createPostBtn');
-const showStatsBtn = document.getElementById('showStatsBtn');
-const postForm = document.getElementById('postForm');
-const cancelPostBtn = document.getElementById('cancelPostBtn');
-const statsDialog = document.getElementById('statsDialog');
-const closeDialogBtn = document.getElementById('closeDialogBtn');
-const totalPostsSpan = document.getElementById('totalPostsCount');
-const totalCommentsSpan = document.getElementById('totalCommentsCount');
-const articlesContainer = document.getElementById('articlesContainer');
-const postTitleInput = document.getElementById('postTitle');
-const postTextInput = document.getElementById('postText');
-const noPostsMessage = document.getElementById('noPostsMessage');
-const nextBtn = document.querySelector('.btn-outline');
-
-function updateStats() {
-    const articles = document.querySelectorAll('.blog-article');
-    totalPostsSpan.textContent = articles.length;
-    totalCommentsSpan.textContent = '0';
-}
-
-function updateNoPostsMessage() {
-    const articles = document.querySelectorAll('.blog-article');
-    if (articles.length === 0) {
-        noPostsMessage.style.display = 'block';
-        if (articlesContainer) articlesContainer.style.display = 'none';
-        if (nextBtn) nextBtn.style.display = 'none';
-    } else {
-        noPostsMessage.style.display = 'none';
-        if (articlesContainer) articlesContainer.style.display = 'grid';
-        if (nextBtn) nextBtn.style.display = 'block';
+class BlogArticle {
+    constructor({ id, title, text, date, image = "Selection.jpg" }) {
+        this.id = id;
+        this.title = title;
+        this.text = text;
+        this.date = date;
+        this.image = image;
     }
-}
 
-const articleTemplate = document.getElementById('article-template');
-function createArticleFromForm(title, text) {
-    const template = document.createElement('article');
-    template.className = 'blog-article';
-    template.innerHTML = `
-        <div class="blog-article-img">
-            <img src="Selection.jpg" alt="Иконка">
-        </div>
-        <div class="blog-article-text">
-            <h3 class="blog-article-title">${escapeHtml(title)}</h3>
-            <p class="blog-article-description">${escapeHtml(text)}</p>
-            <time datetime="${new Date().toISOString().slice(0,10)}">${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</time>
-        </div>
-        <button class="delete-btn" data-delete title="Удалить статью">✕</button>
-    `;
-    return template;
+    render() {
+        const article = document.createElement('article');
+        article.className = 'blog-article';
+        article.dataset.id = this.id;
+
+        article.innerHTML = `
+            <div class="blog-article-img">
+                <img src="${this.image}" alt="Иконка">
+            </div>
+            <div class="blog-article-text">
+                <h3 class="blog-article-title">${escapeHtml(this.title)}</h3>
+                <p class="blog-article-description">${escapeHtml(this.text)}</p>
+                <time datetime="${this.date}">${formatDate(this.date)}</time>
+            </div>
+            <button class="delete-btn" data-delete title="Удалить статью">✕</button>
+        `;
+        return article;
+    }
 }
 
 function escapeHtml(str) {
@@ -58,58 +36,150 @@ function escapeHtml(str) {
     });
 }
 
-articlesContainer.addEventListener('click', (event) => {
-    const deleteBtn = event.target.closest('[data-delete]');
+function formatDate(dateStr) {
+    if (!dateStr) return '';
+    try {
+        const date = new Date(dateStr);
+        return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+    } catch (e) {
+        return dateStr;
+    }
+}
+
+const STORAGE_KEY = 'blogPosts';
+let articles = [];
+
+function loadArticles() {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (stored) {
+        try {
+            const raw = JSON.parse(stored);
+            articles = raw.map(data => new BlogArticle(data));
+        } catch (e) {
+            console.error('Ошибка парсинга localStorage', e);
+            articles = [];
+        }
+    } else {
+        articles = [];
+    }
+    renderAllArticles();
+}
+
+function saveArticles() {
+    const raw = articles.map(article => ({
+        id: article.id,
+        title: article.title,
+        text: article.text,
+        date: article.date,
+        image: article.image
+    }));
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(raw));
+}
+
+function addArticle(title, text) {
+    const newArticle = new BlogArticle({
+        id: Date.now().toString() + Math.random().toString(36).substr(2, 6),
+        title: title,
+        text: text,
+        date: new Date().toISOString().slice(0, 10),
+        image: "article.jpg"
+    });
+    articles.push(newArticle);
+    saveArticles();
+    renderAllArticles();
+}
+
+function deleteArticleById(id) {
+    articles = articles.filter(article => article.id !== id);
+    saveArticles();
+    renderAllArticles();
+}
+
+function renderAllArticles() {
+    const container = document.getElementById('articlesContainer');
+    if (!container) return;
+    container.innerHTML = '';
+    articles.forEach(article => {
+        container.appendChild(article.render());
+    });
+    updateStatsAndMessage();
+}
+
+function updateStatsAndMessage() {
+    const total = articles.length;
+    document.getElementById('totalPostsCount').textContent = total;
+    document.getElementById('totalCommentsCount').textContent = '0';
+
+    const noPostsMsg = document.getElementById('noPostsMessage');
+    const articlesContainer = document.getElementById('articlesContainer');
+    if (total === 0) {
+        if (noPostsMsg) noPostsMsg.style.display = 'block';
+        if (articlesContainer) articlesContainer.style.display = 'none';
+    } else {
+        if (noPostsMsg) noPostsMsg.style.display = 'none';
+        if (articlesContainer) articlesContainer.style.display = 'grid';
+    }
+}
+
+document.getElementById('articlesContainer')?.addEventListener('click', (e) => {
+    const deleteBtn = e.target.closest('[data-delete]');
     if (deleteBtn) {
-        const article = deleteBtn.closest('.blog-article');
-        if (article) {
-            article.remove();
-            updateStats();
-            updateNoPostsMessage();
+        const articleElem = deleteBtn.closest('.blog-article');
+        const id = articleElem?.dataset.id;
+        if (id) {
+            deleteArticleById(id);
         }
     }
 });
 
-createPostBtn.addEventListener('click', () => {
-    postForm.classList.remove('hidden');
-    postTitleInput.value = '';
-    postTextInput.value = '';
-    postForm.scrollIntoView({ behavior: 'smooth' });
-});
+const postForm = document.getElementById('postForm');
+const postTitle = document.getElementById('postTitle');
+const postText = document.getElementById('postText');
 
-cancelPostBtn.addEventListener('click', () => {
-    postForm.reset();
-    postForm.classList.add('hidden');
-});
-
-postForm.addEventListener('submit', (e) => {
+postForm?.addEventListener('submit', (e) => {
     e.preventDefault();
-    const title = postTitleInput.value.trim();
-    const text = postTextInput.value.trim();
+    const title = postTitle.value.trim();
+    const text = postText.value.trim();
     if (!title || !text) {
-        alert('Пожалуйста, заполните заголовок и текст статьи');
+        alert('Заполните заголовок и текст');
         return;
     }
-    const newArticle = createArticleFromForm(title, text);
-    articlesContainer.appendChild(newArticle);
+    addArticle(title, text);
     postForm.reset();
     postForm.classList.add('hidden');
-    updateStats();
-    updateNoPostsMessage();
 });
 
-showStatsBtn.addEventListener('click', () => {
-    updateStats();
-    statsDialog.showModal();
-});
+const createPostBtn = document.getElementById('createPostBtn');
+if (createPostBtn) {
+    createPostBtn.addEventListener('click', () => {
+        postForm.classList.remove('hidden');
+        postTitle.value = '';
+        postText.value = '';
+        postForm.scrollIntoView({ behavior: 'smooth' });
+    });
+}
 
-closeDialogBtn.addEventListener('click', () => {
-    statsDialog.close();
-});
+const cancelPostBtn = document.getElementById('cancelPostBtn');
+if (cancelPostBtn) {
+    cancelPostBtn.addEventListener('click', () => {
+        postForm.reset();
+        postForm.classList.add('hidden');
+    });
+}
 
-statsDialog.addEventListener('click', (e) => {
-    if (e.target === statsDialog) statsDialog.close();
-});
+const showStatsBtn = document.getElementById('showStatsBtn');
+const statsDialog = document.getElementById('statsDialog');
+const closeDialogBtn = document.getElementById('closeDialogBtn');
 
-updateStats();
-updateNoPostsMessage();
+if (showStatsBtn && statsDialog) {
+    showStatsBtn.addEventListener('click', () => {
+        updateStatsAndMessage();
+        statsDialog.showModal();
+    });
+    closeDialogBtn?.addEventListener('click', () => statsDialog.close());
+    statsDialog.addEventListener('click', (e) => {
+        if (e.target === statsDialog) statsDialog.close();
+    });
+}
+
+loadArticles();
