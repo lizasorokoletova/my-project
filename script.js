@@ -49,7 +49,7 @@ function formatDate(dateStr) {
 const STORAGE_KEY = 'blogPosts';
 let articles = [];
 
-function loadArticles() {
+function loadArticlesSync() {
     const stored = localStorage.getItem(STORAGE_KEY);
     if (stored) {
         try {
@@ -74,19 +74,6 @@ function saveArticles() {
         image: article.image
     }));
     localStorage.setItem(STORAGE_KEY, JSON.stringify(raw));
-}
-
-function addArticle(title, text) {
-    const newArticle = new BlogArticle({
-        id: Date.now().toString() + Math.random().toString(36).substr(2, 6),
-        title: title,
-        text: text,
-        date: new Date().toISOString().slice(0, 10),
-        image: "article.jpg"
-    });
-    articles.push(newArticle);
-    saveArticles();
-    renderAllArticles();
 }
 
 function deleteArticleById(id) {
@@ -121,6 +108,65 @@ function updateStatsAndMessage() {
     }
 }
 
+function showLoader() {
+    const loader = document.getElementById('loader');
+    if (loader) loader.style.display = 'flex';
+}
+
+function hideLoader() {
+    const loader = document.getElementById('loader');
+    if (loader) loader.style.display = 'none';
+}
+
+function disableUI(disabled = true) {
+    const elements = [
+        document.getElementById('createPostBtn'),
+        document.getElementById('showStatsBtn'),
+        document.getElementById('savePostBtn'),
+        document.getElementById('cancelPostBtn'),
+        document.getElementById('postTitle'),
+        document.getElementById('postText')
+    ];
+    elements.forEach(el => {
+        if (el) el.disabled = disabled;
+    });
+    const formBtns = document.querySelectorAll('.btn-primary, .btn-secondary');
+    formBtns.forEach(btn => { if (btn) btn.disabled = disabled; });
+}
+
+function addArticleWithDelay(title, text) {
+    showLoader();
+    disableUI(true);
+
+    setTimeout(() => {
+        const newArticle = new BlogArticle({
+            id: Date.now().toString() + Math.random().toString(36).substr(2, 6),
+            title: title,
+            text: text,
+            date: new Date().toISOString().slice(0, 10),
+            image: "article.jpg"
+        });
+        articles.push(newArticle);
+        saveArticles();
+        renderAllArticles();
+
+        hideLoader();
+        disableUI(false);
+        postForm.reset();
+        postForm.classList.add('hidden');
+    }, 1500);
+}
+
+function init() {
+    showLoader();
+    disableUI(true);
+    setTimeout(() => {
+        loadArticlesSync();
+        hideLoader();
+        disableUI(false);
+    }, 1500);
+}
+
 document.getElementById('articlesContainer')?.addEventListener('click', (e) => {
     const deleteBtn = e.target.closest('[data-delete]');
     if (deleteBtn) {
@@ -144,9 +190,7 @@ postForm?.addEventListener('submit', (e) => {
         alert('Заполните заголовок и текст');
         return;
     }
-    addArticle(title, text);
-    postForm.reset();
-    postForm.classList.add('hidden');
+    addArticleWithDelay(title, text);
 });
 
 const createPostBtn = document.getElementById('createPostBtn');
@@ -182,4 +226,4 @@ if (showStatsBtn && statsDialog) {
     });
 }
 
-loadArticles();
+init();
