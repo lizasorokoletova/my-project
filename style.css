@@ -888,11 +888,89 @@ p {
     position: relative;
 }
 
+.articles-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 36px;
+    margin-bottom: 40px;
+}
+
+.blog-article {
+    display: flex;
+    flex-direction: column;
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--color-bg-soft);
+    position: relative;
+}
+
+.blog-article-img img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+}
+
+.blog-article-text {
+    padding: 20px;
+}
+
+.blog-article-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+    color: var(--color-primary);
+}
+
+.blog-article-description {
+    font-size: 14px;
+    color: var(--color-text-light);
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+.blog-article time {
+    font-size: 12px;
+    color: var(--color-text-light);
+}
+
+.blog-article:first-child {
+    flex-direction: row;
+    grid-column: span 3;
+    background: var(--color-bg-soft);
+}
+
+.blog-article:first-child .blog-article-img {
+    width: 50%;
+}
+
+.blog-article:first-child .blog-article-text {
+    width: 50%;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.blog-article:first-child .blog-article-title {
+    font-size: 32px;
+    margin-bottom: 16px;
+}
+
+.blog-article:first-child .blog-article-description {
+    font-size: 16px;
+    margin-bottom: 16px;
+}
+
+.blog-article:not(:first-child) .blog-article-description {
+    display: none;
+}
+
 .delete-btn {
     position: absolute;
-    top: 10px;
-    right: 10px;
-    background: rgba(255,255,255,0.8);
+    top: 12px;
+    right: 12px;
+    background: rgba(255,255,255,0.9);
     border: none;
     border-radius: 50%;
     width: 28px;
@@ -904,9 +982,13 @@ p {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.2s;
     opacity: 0;
+    transition: opacity 0.2s;
     z-index: 10;
+}
+
+.blog-article:hover .delete-btn {
+    opacity: 1;
 }
 
 .post-item:hover .delete-btn {
@@ -938,4 +1020,22 @@ p {
 
     border-radius: 12px;
     margin: 40px 0;
+}
+
+@media (max-width: 800px) {
+    .articles-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    .blog-article:first-child {
+        flex-direction: column;
+        grid-column: span 1;
+    }
+    .blog-article:first-child .blog-article-img,
+    .blog-article:first-child .blog-article-text {
+        width: 100%;
+    }
+    .blog-article:first-child .blog-article-text {
+        padding: 20px;
+    }
 }
