@@ -1,0 +1,68 @@
+.posts {
+  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.post {
+  display: flex;
+  justify-content: space-between;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--color-bg-soft);
+}
+.post.green {
+  background: var(--color-bg-green-light);
+}
+.post-text {
+  padding-top: 60px;
+  padding-left: 50px;
+}
+.post img {
+  width: 50%;
+  object-fit: cover;
+}
+.category {
+  font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+.category.product {
+  color: var(--color-accent-orange);
+}
+.category.portrait {
+  color: var(--color-accent-green);
+}
+.post-text .category {
+  display: block;
+  margin-bottom: 10px;
+}
+.post-text h3 {
+  margin-bottom: 25px;
+}
+.post-text p {
+  font-size: 16px;
+  color: var(--color-text-light);
+}
+.btn {
+  width: 200px;
+  height: 50px;
+  background: var(--color-white);
+  color: var(--color-accent-green);
+  border: 1px solid var(--color-accent-green);
+  cursor: pointer;
+  margin: 0 auto;
+  transition: all 0.3s ease;
+}
+.btn:hover {
+  background: var(--color-accent-green);
+  color: var(--color-white);
+}
+@media (max-width: 800px) {
+  .post {
+    flex-direction: column;
+  }
+  .post img {
+    width: 100%;
+  }
+}

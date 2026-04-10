@@ -1,0 +1,67 @@
+.hobby {
+  padding: 60px 0;
+}
+.hobby h2 {
+  margin-bottom: 40px;
+}
+.hobby-grid-container {
+  display: grid;
+  gap: 40px;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 264px);
+}
+.hobby-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+}
+.hobby-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+.hobby-item .hobby-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(104, 104, 106, 0.85);
+  color: var(--color-white);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.hobby-item:hover .hobby-overlay {
+  opacity: 1;
+}
+.hobby-overlay h4 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: var(--color-white);
+}
+.hobby-overlay p {
+  font-size: 16px;
+  color: var(--color-white);
+}
+.hobby-item:nth-child(-n+2) {
+  grid-row: span 2;
+}
+.hobby-item:nth-child(n+3):nth-child(-n+4) {
+  grid-column: span 2;
+}
+@media (max-width: 800px) {
+  .hobby-grid-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: 20px;
+  }
+  .hobby-item:nth-child(-n+2),
+  .hobby-item:nth-child(n+3):nth-child(-n+4) {
+    grid-row: auto;
+    grid-column: auto;
+  }
+}

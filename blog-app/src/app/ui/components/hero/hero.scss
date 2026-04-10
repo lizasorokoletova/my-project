@@ -1,0 +1,35 @@
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+.hero-text {
+  width: 55%;
+}
+.hero-img {
+  width: 45%;
+}
+.hero-img img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+.hero p {
+  font-size: 15px;
+  line-height: 26px;
+  color: var(--color-text-light);
+  margin: 20px 0;
+}
+.link {
+  color: var(--color-accent-green);
+  text-decoration: none;
+}
+@media (max-width: 800px) {
+  .hero {
+    flex-direction: column;
+  }
+  .hero-img {
+    margin-left: 0;
+  }
+}
